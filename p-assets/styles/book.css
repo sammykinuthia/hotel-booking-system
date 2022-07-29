@@ -1,0 +1,30 @@
+
+:root {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    --primary-color: #151442;
+    --secondary-color: gold;
+    --accent-color: #dfdfdf;
+}
+.carousel img{
+width: 100%;
+max-height: 80vh;
+}
+.carousel-caption >h5,.carousel-caption> p{
+    color:white;
+    background: #151442;
+    padding: 0.3rem;
+   
+    
+}
+.my-card{
+    /* background: var(--accent-color); */
+    /* min-width: 13rem !important; */
+
+}
+.market{
+    display: flex;
+  
+   
+}
