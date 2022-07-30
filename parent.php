@@ -30,7 +30,7 @@ class Customer{
 
 
    function __construct($conn){
-     $sql = "CREATE TABLE IF NOT EXISTS customer(id INT AUTO_INCREMENT,idRoom INT, firstName VARCHAR(50),lastName VARCHAR(50), email VARCHAR(40),city VARCHAR(50), phoneNumber VARCHAR(50), idNumber VARCHAR(50),active BOOLEAN, bookDate DateTime,PRIMARY KEY(id), FOREIGN KEY(idRoom) REFERENCES Rooms(id) )";
+     $sql = "CREATE TABLE IF NOT EXISTS customer(id INT AUTO_INCREMENT,idRoom INT NOT NULL, firstName VARCHAR(50) NOT NULL,lastName VARCHAR(50) NOT NULL, email VARCHAR(40) NOT NULL,city VARCHAR(50) NOT NULL, phoneNumber VARCHAR(50) NOT NULL, idNumber VARCHAR(50) NOT NULL,active BOOLEAN DEFAULT 1, bookDate DateTime NOT NULL,PRIMARY KEY(id), FOREIGN KEY(idRoom) REFERENCES Rooms(id) )";
     if(!mysqli_query($conn,$sql)){
             echo ' customer create error';
         }
@@ -47,7 +47,7 @@ class Admin{
    public $idNumber;
 
    function __construct($conn){
-     $sql = "CREATE TABLE IF NOT EXISTS admin(id INT AUTO_INCREMENT, firstName VARCHAR(50),lastName VARCHAR(50), userName VARCHAR(50), password VARCHAR(50), email VARCHAR(40), phoneNumber VARCHAR(50), idNumber VARCHAR(50),PRIMARY KEY(id))";
+     $sql = "CREATE TABLE IF NOT EXISTS admin(id INT AUTO_INCREMENT, firstName VARCHAR(50) NOT NULL,lastName VARCHAR(50) NOT NULL, userName VARCHAR(50) NOT NULL, password VARCHAR(50) NOT NULL, email VARCHAR(40) NOT NULL, phoneNumber VARCHAR(50) NOT NULL, idNumber VARCHAR(50) NOT NULL,PRIMARY KEY(id))";
     if(!mysqli_query($conn,$sql)){
             echo ' Admin create error';
         }
@@ -60,8 +60,9 @@ class Rooms{
    public $category;
    public $beds;
    public $price;
+   public $roomCode;
    function __construct($conn){
-    $sql = "CREATE TABLE IF NOT EXISTS rooms(id INT AUTO_INCREMENT, category VARCHAR(50),beds INT, price INT, PRIMARY KEY(id))";
+    $sql = "CREATE TABLE IF NOT EXISTS rooms(id INT AUTO_INCREMENT, category VARCHAR(50) NOT NULL,beds INT NOT NULL, price INT NOT NULL,roomCode VARCHAR(10) NOT NULL UNIQUE , PRIMARY KEY(id))";
     if(!mysqli_query($conn,$sql)){
                 echo ' Rooms create error';
             }

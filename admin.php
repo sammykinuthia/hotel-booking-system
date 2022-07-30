@@ -34,8 +34,8 @@ if(mysqli_query($conn,$sql)){
             // $bookt = $row['bookDate'];
             // $booktstamp = strtotime($bookt);
             // $diff = ($nowstamp-$booktstamp)/3600;
-            if($prev > $row["bookDate"] ){
-                $sql = "UPDATE customer SET active = 1";
+            if(strtotime($prev) > strtotime($row["bookDate"] )){
+                $sql = "UPDATE customer SET active = 0";
                 mysqli_query($conn,$sql);
             }
 
@@ -58,7 +58,7 @@ if(mysqli_query($conn,$sql)){
 
     <?php require("./components/navBar.php") ?>
 <div class="container main bg-light">
-    <h1 class="text-center text-primary">Active Customers</h1>
+    <h3 class="text-center fw-bolder">Active Customers</h2>
     <hr>
 <table class="table table-striped table-hover">
   <thead>
@@ -75,7 +75,7 @@ if(mysqli_query($conn,$sql)){
   </thead>
   <tbody>
     <?php 
-    $sql = "SELECT customer.id as id, firstName, lastName,category,idRoom,rooms.beds as beds,rooms.price as price, bookDate FROM customer INNER JOIN rooms ON customer.idRoom = rooms.id WHERE active = 1 ORDER BY bookDate DESC";
+    $sql = "SELECT customer.id as id, firstName, lastName,category,rooms.roomCode as idRoom,rooms.beds as beds,rooms.price as price, bookDate FROM customer INNER JOIN rooms ON customer.idRoom = rooms.id WHERE active = 1 ORDER BY bookDate DESC";
     if(mysqli_query($conn,$sql)){
         $result = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_assoc($result))
@@ -102,7 +102,56 @@ if(mysqli_query($conn,$sql)){
   </tbody>
 </table>
 <hr>
-    <h1 class="text-center text-primary">All Customers</h1>
+    <h3 class="text-center fw-bolder ">Add Room</h3>
+    <hr>
+<form method="post">
+  <div class="row input-group">
+    <div class="col">
+      <input name="code" type="text" required class="form-control" placeholder="Room code">
+    </div>
+    <div class="col">
+      <input name="price" type="number" required class="form-control" placeholder="price">
+    </div>
+    <div class="col input-group">
+      <select required class="custom-select" name="category" id="category">
+        <option value="">SELECT category</option>
+        <option value="business">business</option>
+        <option value="economic">economic</option>
+        <option value="low">low</option>
+      </select>
+    </div>
+    <div class="col input-group">
+        <select required  class="custom-select" name="beds" id="beds">
+            <option value="">NO. OF BEDS</option>
+            <option value="1">one</option>
+            <option value="2">two</option>
+        </select>
+    </div>
+    <div class="col">
+      <button name="add" class="btn btn-primary">ADD</button>
+    </div>
+  </div>
+</form>
+<?php
+if(isset($_POST["add"])){
+    $code = $_POST['code'];
+    $category = $_POST['category'];
+    $beds = $_POST['beds'];
+    $price = $_POST['price'];
+    // $sql = "INSERT INTO rooms (roomCode,category,beds,price) VALUES ($code,$category,$beds,$price)";
+    $sql = "INSERT INTO rooms (category,beds,price,roomCode) VALUES ('$category','$beds','$price','$code')";
+    if(!mysqli_query($conn, $sql)){
+        echo mysqli_error($conn);
+    }
+}
+
+?>
+
+
+
+<hr>
+    <h3 class="text-center fw-bolder">All Customers</h3>
+    <hr>
     <form action="" method="post">
         <label> Limit: <input class="form-control" type="number" name="limit" id="limit"></label>
         <button class="btn btn-primary" type="submit">Filter</button>
@@ -123,7 +172,14 @@ if(mysqli_query($conn,$sql)){
   </thead>
   <tbody>
     <?php 
-    $sql = "SELECT customer.id as id, firstName, lastName,category,idRoom,rooms.beds as beds,rooms.price as price, bookDate FROM customer INNER JOIN rooms ON customer.idRoom = rooms.id WHERE active = 0 ORDER BY bookDate DESC";
+
+    if(isset($_POST['limit'])){
+        $limit = $_POST['limit'];
+        $sql = "SELECT customer.id as id, firstName, lastName,category,rooms.roomCode as idRoom,rooms.beds as beds,rooms.price as price, bookDate FROM customer INNER JOIN rooms ON customer.idRoom = rooms.id ORDER BY bookDate DESC LIMIT $limit";
+    }
+    else{
+        $sql = "SELECT customer.id as id, firstName, lastName,category,idRoom,rooms.beds as beds,rooms.price as price, bookDate FROM customer INNER JOIN rooms ON customer.idRoom = rooms.id ORDER BY bookDate DESC";
+    }
     if(mysqli_query($conn,$sql)){
         $result = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_assoc($result))
@@ -149,14 +205,6 @@ if(mysqli_query($conn,$sql)){
  
   </tbody>
 </table>
-
-<h1>hey</h1>
-<?php
-$now = date('Y-m-d H:m:s');
-$prev= strtotime( $now)-12*3600;
-$prev = date('Y-m-d H:m:s',$prev);
-echo "now: ".$now." prev: ".$prev;
-?>
 
 </div>
 
