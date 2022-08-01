@@ -67,7 +67,7 @@ if(mysqli_query($conn,$sql)){
       <th scope="col">First</th>
       <th scope="col">Last</th>
       <th scope="col">category</th>
-      <th scope="col">room No</th>
+      <th scope="col">room</th>
       <th scope="col">beds</th>
       <th scope="col">price</th>
       <th scope="col">Date</th>
@@ -101,8 +101,9 @@ if(mysqli_query($conn,$sql)){
  
   </tbody>
 </table>
+<!-- add room pricing -->
 <hr>
-    <h3 class="text-center fw-bolder ">Add Room</h3>
+    <h3 class="text-center fw-bolder ">Add Room price</h3>
     <hr>
 <form method="post">
   <div class="row input-group">
@@ -132,14 +133,45 @@ if(mysqli_query($conn,$sql)){
     </div>
   </div>
 </form>
+<!-- end of add room pricing-->
+<!-- add room -->
+<hr>
+    <h3 class="text-center fw-bolder ">Add Room</h3>
+    <hr>
+<form method="post">
+  <div class="row input-group">
+    <div class="col">
+      <input name="code" type="text" required class="form-control" placeholder="Room code">
+    </div>
+    <div class="col input-group">
+      <select required class="custom-select" name="category" id="category">
+        <option value="">SELECT category</option>
+        <option value="business">business</option>
+        <option value="economic">economic</option>
+        <option value="low">low</option>
+      </select>
+    </div>
+    <div class="col input-group">
+        <select required  class="custom-select" name="beds" id="beds">
+            <option value="">NO. OF BEDS</option>
+            <option value="1">one</option>
+            <option value="2">two</option>
+        </select>
+    </div>
+    <div class="col">
+      <button name="add" class="btn btn-primary">ADD</button>
+    </div>
+  </div>
+</form>
+<!-- end of add room -->
 <?php
 if(isset($_POST["add"])){
     $code = $_POST['code'];
     $category = $_POST['category'];
     $beds = $_POST['beds'];
-    $price = $_POST['price'];
+    // $price = $_POST['price'];
     // $sql = "INSERT INTO rooms (roomCode,category,beds,price) VALUES ($code,$category,$beds,$price)";
-    $sql = "INSERT INTO rooms (category,beds,price,roomCode) VALUES ('$category','$beds','$price','$code')";
+    $sql = "INSERT INTO rooms (category,beds,roomCode) VALUES ('$category','$beds','$code')";
     if(!mysqli_query($conn, $sql)){
         echo mysqli_error($conn);
     }
@@ -164,7 +196,7 @@ if(isset($_POST["add"])){
       <th scope="col">First</th>
       <th scope="col">Last</th>
       <th scope="col">category</th>
-      <th scope="col">room No</th>
+      <th scope="col">room</th>
       <th scope="col">beds</th>
       <th scope="col">price</th>
       <th scope="col">Date</th>
@@ -178,7 +210,7 @@ if(isset($_POST["add"])){
         $sql = "SELECT customer.id as id, firstName, lastName,category,rooms.roomCode as idRoom,rooms.beds as beds,rooms.price as price, bookDate FROM customer INNER JOIN rooms ON customer.idRoom = rooms.id ORDER BY bookDate DESC LIMIT $limit";
     }
     else{
-        $sql = "SELECT customer.id as id, firstName, lastName,category,idRoom,rooms.beds as beds,rooms.price as price, bookDate FROM customer INNER JOIN rooms ON customer.idRoom = rooms.id ORDER BY bookDate DESC";
+        $sql = "SELECT customer.id as id, firstName, lastName,category,rooms.roomCode as idRoom,rooms.beds as beds,rooms.price as price, bookDate FROM customer INNER JOIN rooms ON customer.idRoom = rooms.id ORDER BY bookDate DESC";
     }
     if(mysqli_query($conn,$sql)){
         $result = mysqli_query($conn,$sql);
