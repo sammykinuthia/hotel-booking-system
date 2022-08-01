@@ -56,61 +56,102 @@
 <hr> 
 <div class="market container">
 <div class="row">
+    <!-- business single -->
 <div class="col-md-4 my-card business">
 <div class="card">
     <form action="pay.php" method="post">
   <div class="card-body">
     <h5 class="card-title">Business Package</h5>
 
-
-    <input type="radio" class="btn-check" name="business" id="business-single" autocomplete="off">
-    <label class="btn btn-secondary" for="business-single">Single Bed</label>
-    <input type="radio" class="btn-check" name="business" id="business-double" autocomplete="off" >
-    <label class="btn btn-secondary" for="business-double">Two Bed</label>
+<p class="bg-secondary text-light p-2 ">Single bed</p>
     <br>
     <p>Best services, spacious rooms with hot shower</p>
-    <h4 class="price">Ksh: </h4>
+    <h4 id="business1" class="price">Ksh: </h4>
     <button class="btn btn-primary" type="submit">Book Now</button>
   </div>
   </form>
 </div>         
     </div>
-<!-- economy -->
-<div class="col-md-4 my-card economy">
+    <!-- business double -->
+    <div class="col-md-4 my-card business">
+<div class="card">
+    <form action="pay.php" method="post">
+  <div class="card-body">
+    <h5 class="card-title">Business Package</h5>
+
+<p class="bg-secondary text-light p-2 ">Two bed</p>
+    <br>
+    <p>Best services, spacious rooms with hot shower</p>
+    <h4 id="business2" class="price">Ksh: </h4>
+    <button class="btn btn-primary" type="submit">Book Now</button>
+  </div>
+  </form>
+</div>         
+    </div>
+    <!-- economy single -->
+    <div class="col-md-4 my-card business">
 <div class="card">
     <form action="pay.php" method="post">
   <div class="card-body">
     <h5 class="card-title">Economic Package</h5>
-    
-    <input type="radio" class="btn-check" name="economic" id="economic-single" autocomplete="off" >
-    <label class="btn btn-secondary" for="economic-single">Single Bed</label>
-    <input type="radio" class="btn-check" name="economic" id="economic-double" autocomplete="off" >
-    <label class="btn btn-secondary" for="economic-double">Two Bed</label>
-<br>
-    <p>Best services, spacious rooms with hot shower</p>
 
-    <h4 class="price">Ksh: </h4>
+<p class="bg-secondary text-light p-2 ">Single bed</p>
+    <br>
+    <p>Best services, spacious rooms with hot shower</p>
+    <h4 id="economy1" class="price">Ksh: </h4>
     <button class="btn btn-primary" type="submit">Book Now</button>
   </div>
   </form>
-</div>        
+</div>         
     </div>
-<div class="col-md-4 my-card low">
+        <!-- economy double -->
+    <div class="col-md-4 my-card business">
 <div class="card">
- <form action="pay.php" method="post">
+    <form action="pay.php" method="post">
   <div class="card-body">
-    <h5 class="card-title">Low Package</h5>
-    
-    <input type="radio" class="btn-check" name="low" id="low-single" autocomplete="off" >
-    <label class="btn btn-secondary" for="low-single">Single Bed</label>
-    <input type="radio" class="btn-check" name="low" id="low-double" autocomplete="off" >
-    <label class="btn btn-secondary" for="low-double">Two Bed</label>
-<br>
-    <p>Best services, spacious rooms with hot shower</p>
+    <h5 class="card-title">Economic Package</h5>
 
-    <h4 class="price">Ksh: </h4>
+<p class="bg-secondary text-light p-2 ">Two bed</p>
+    <br>
+    <p>Best services, spacious rooms with hot shower</p>
+    <h4 id="economy2" class="price">Ksh: </h4>
     <button class="btn btn-primary" type="submit">Book Now</button>
   </div>
+  </form>
+</div>         
+    </div>
+        <!-- Low single -->
+    <div class="col-md-4 my-card business">
+<div class="card">
+    <form action="pay.php" method="post">
+  <div class="card-body">
+    <h5 class="card-title">Low Package</h5>
+
+<p class="bg-secondary text-light p-2 ">Single bed</p>
+    <br>
+    <p>Best services, spacious rooms with hot shower</p>
+    <h4 id="low1" class="price">Ksh: </h4>
+    <button class="btn btn-primary" type="submit">Book Now</button>
+  </div>
+  </form>
+</div>         
+    </div>
+            <!-- Low double -->
+    <div class="col-md-4 my-card business">
+<div class="card">
+    <form action="pay.php" method="post">
+  <div class="card-body">
+    <h5 class="card-title">Low Package</h5>
+
+<p class="bg-secondary text-light p-2 ">Two bed</p>
+    <br>
+    <p>Best services, spacious rooms with hot shower</p>
+    <h4 id="low2" class="price">Ksh: </h4>
+    <button class="btn btn-primary" type="submit">Book Now</button>
+  </div>
+  </form>
+</div>         
+    </div>
 </form>
 </div>
     </div>

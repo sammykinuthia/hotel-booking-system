@@ -58,6 +58,7 @@ if(mysqli_query($conn,$sql)){
 
     <?php require("./components/navBar.php") ?>
 <div class="container main bg-light">
+    <!-- active customers -->
     <h3 class="text-center fw-bolder">Active Customers</h2>
     <hr>
 <table class="table table-striped table-hover">
@@ -101,17 +102,48 @@ if(mysqli_query($conn,$sql)){
  
   </tbody>
 </table>
+<!-- categories -->
+    <h3 class="text-center fw-bolder">Room Categories</h2>
+    <hr>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Category</th>
+      <th scope="col">beds</th>
+      <th scope="col">price</th>
+  </thead>
+  <tbody>
+    <?php 
+    $sql = "SELECT * FROM category";
+    if(mysqli_query($conn,$sql)){
+        $result = mysqli_query($conn,$sql);
+        while($row = mysqli_fetch_assoc($result))
+    // foreach($rows as $row)
+    {?>
+
+<tr>
+      <th scope="row"><?php echo $row['categories']?></th>
+      <td><?php echo $row['beds']?></td>
+      <td><?php echo $row['price']?></td>
+
+
+    </tr>
+
+
+ <?php   }
+}
+?>
+ 
+  </tbody>
+</table>
 <!-- add room pricing -->
 <hr>
-    <h3 class="text-center fw-bolder ">Add Room price</h3>
+    <h3 class="text-center fw-bolder ">Update Room Price</h3>
     <hr>
-<form method="post">
+<form class="" method="post">
   <div class="row input-group">
     <div class="col">
-      <input name="code" type="text" required class="form-control" placeholder="Room code">
-    </div>
-    <div class="col">
-      <input name="price" type="number" required class="form-control" placeholder="price">
+      <input name="price" type="number" required class="form-control" placeholder="Price">
     </div>
     <div class="col input-group">
       <select required class="custom-select" name="category" id="category">
@@ -129,10 +161,23 @@ if(mysqli_query($conn,$sql)){
         </select>
     </div>
     <div class="col">
-      <button name="add" class="btn btn-primary">ADD</button>
+      <button name="update" class="btn btn-primary">UPDATE</button>
     </div>
   </div>
 </form>
+<?php
+if(isset($_POST["update"])){
+    $price = $_POST['price'];
+    $category = $_POST['category'];
+    $beds = intval($_POST['beds']);
+    $sql = "UPDATE category SET price = '$price' WHERE (categories = '$category' AND beds = '$beds')";
+    if(!mysqli_query($conn, $sql)){
+        echo mysqli_error($conn);
+    }
+}
+
+
+?>
 <!-- end of add room pricing-->
 <!-- add room -->
 <hr>
@@ -168,10 +213,8 @@ if(mysqli_query($conn,$sql)){
 if(isset($_POST["add"])){
     $code = $_POST['code'];
     $category = $_POST['category'];
-    $beds = $_POST['beds'];
-    // $price = $_POST['price'];
-    // $sql = "INSERT INTO rooms (roomCode,category,beds,price) VALUES ($code,$category,$beds,$price)";
-    $sql = "INSERT INTO rooms (category,beds,roomCode) VALUES ('$category','$beds','$code')";
+    $beds = intval($_POST['beds']);
+    $sql = "INSERT INTO rooms(roomCode, category) VALUES ('$code',(SELECT id FROM category WHERE categories = '$category' AND beds = '$beds')) ";
     if(!mysqli_query($conn, $sql)){
         echo mysqli_error($conn);
     }

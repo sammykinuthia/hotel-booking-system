@@ -1,8 +1,8 @@
 const data = fetch("http://localhost/HOTEL/api/read.php")
-    .then((promise) => promise.json())
+    .then((promise) => console.log(promise.json()))
     .then((data) => {
+        console.log(data);
         return data.data;
-// console.log(data.data);
         
 
     });
@@ -33,21 +33,11 @@ data.then((d) => {
             low2 = e;
         }
     });
-console.log(economy2);
-console.log(low1);
-    console.log(business1);
-    let val = getRadio('business');
-    // console.log(val);
+    document.getElementById("business1").innerHTML ="ksh: "+ business1;
+    document.getElementById("business2").innerHTML ="ksh: "+ business2;
+    document.getElementById("economy1").innerHTML ="ksh: "+ economy1;
+    document.getElementById("economy2").innerHTML ="ksh: "+ economy2;
+    document.getElementById("low1").innerHTML ="ksh: "+ low1;
+    document.getElementById("low2").innerHTML ="ksh: "+ low2;
     
 });
-
-
-function getRadio(name){
-    let ele = document.getElementsByName(name);
-    for (let i = 0; i < ele.length; i++) {
-        if(ele[i].checked){
-            return ele[i].value;
-        }
-        
-    }
-}
