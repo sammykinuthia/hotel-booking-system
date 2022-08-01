@@ -1,7 +1,7 @@
 const data = fetch("http://localhost/HOTEL/api/read.php")
-    .then((promise) => console.log(promise.json()))
+    .then((promise) => promise.json())
     .then((data) => {
-        console.log(data);
+        // console.log(data);
         return data.data;
         
 
@@ -14,6 +14,7 @@ let economy1;
 let economy2;
 data.then((d) => {
     d.forEach(e => {
+        console.log(e);
         if (!business1 && e["category"] == "business" && e['beds'] == 1  ){
             business1 = e;
         }

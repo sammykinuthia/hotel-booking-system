@@ -19,7 +19,7 @@
     header("Access-Control-Allow-Origin:*");
     header("Content-Type:application/json");
 
-    $sql = "SELECT * FROM rooms WHERE rooms.id NOT IN (SELECT c.idRoom FROM customer c)";
+    $sql = "SELECT * FROM rooms r INNER JOIN category ct ON r.category = ct.id  WHERE r.id NOT IN (SELECT c.idRoom FROM customer c)";
     $results = mysqli_query($conn,$sql);
     $post_arr = array();
     $post_arr['data']= array();
