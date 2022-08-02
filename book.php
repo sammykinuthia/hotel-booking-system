@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,12 +64,14 @@
     <form action="pay.php" method="post">
   <div class="card-body">
     <h5 class="card-title">Business Package</h5>
+    <input type="text" name="cat" hidden value="11" id="">
+
 
 <p class="bg-secondary text-light p-2 ">Single bed</p>
     <br>
     <p>Best services, spacious rooms with hot shower</p>
-    <h4 id="business1" class="price">Ksh: </h4>
-    <button class="btn btn-primary" type="submit">Book Now</button>
+    <h4 id="business1" class="price">Ksh: </h4><br>
+    <button id="1" class="btn btn-primary" name='pay' type="submit">Book Now</button>
   </div>
   </form>
 </div>         
@@ -78,12 +82,14 @@
     <form action="pay.php" method="post">
   <div class="card-body">
     <h5 class="card-title">Business Package</h5>
+    <input type="text" name="cat" hidden value="12" id="">
+
 
 <p class="bg-secondary text-light p-2 ">Two bed</p>
     <br>
     <p>Best services, spacious rooms with hot shower</p>
-    <h4 id="business2" class="price">Ksh: </h4>
-    <button class="btn btn-primary" type="submit">Book Now</button>
+    <h4 id="business2" class="price">Ksh: </h4><br>
+    <button id="2" class="btn btn-primary" name='pay' type="submit">Book Now</button>
   </div>
   </form>
 </div>         
@@ -94,12 +100,13 @@
     <form action="pay.php" method="post">
   <div class="card-body">
     <h5 class="card-title">Economic Package</h5>
+    <input type="text" name="cat" hidden value="21" id="">
 
 <p class="bg-secondary text-light p-2 ">Single bed</p>
     <br>
     <p>Best services, spacious rooms with hot shower</p>
-    <h4 id="economy1" class="price">Ksh: </h4>
-    <button class="btn btn-primary" type="submit">Book Now</button>
+    <h4 id="economy1" class="price">Ksh: </h4><br>
+    <button id="3" class="btn btn-primary" name='pay' type="submit">Book Now</button>
   </div>
   </form>
 </div>         
@@ -110,12 +117,13 @@
     <form action="pay.php" method="post">
   <div class="card-body">
     <h5 class="card-title">Economic Package</h5>
+    <input type="text" name="cat" hidden value="22" id="">
 
 <p class="bg-secondary text-light p-2 ">Two bed</p>
     <br>
     <p>Best services, spacious rooms with hot shower</p>
-    <h4 id="economy2" class="price">Ksh: </h4>
-    <button class="btn btn-primary" type="submit">Book Now</button>
+    <h4 id="economy2" class="price">Ksh: </h4><br>
+    <button id="4" class="btn btn-primary" name='pay' type="submit">Book Now</button>
   </div>
   </form>
 </div>         
@@ -126,12 +134,14 @@
     <form action="pay.php" method="post">
   <div class="card-body">
     <h5 class="card-title">Low Package</h5>
+    <input type="text" name="cat" hidden value="31" id="">
 
 <p class="bg-secondary text-light p-2 ">Single bed</p>
     <br>
     <p>Best services, spacious rooms with hot shower</p>
     <h4 id="low1" class="price">Ksh: </h4>
-    <button class="btn btn-primary" type="submit">Book Now</button>
+    <br>
+    <button id="5" class="btn btn-primary" name='pay' type="submit">Book Now</button>
   </div>
   </form>
 </div>         
@@ -142,12 +152,14 @@
     <form action="pay.php" method="post">
   <div class="card-body">
     <h5 class="card-title">Low Package</h5>
-
 <p class="bg-secondary text-light p-2 ">Two bed</p>
     <br>
+    <input type="text" name="cat" hidden value="32" id="">
+
     <p>Best services, spacious rooms with hot shower</p>
     <h4 id="low2" class="price">Ksh: </h4>
-    <button class="btn btn-primary" type="submit">Book Now</button>
+    <br>
+    <button id="6" class="btn btn-primary" name='pay' type="submit">Book Now</button>
   </div>
   </form>
 </div>         

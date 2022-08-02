@@ -26,7 +26,7 @@
     while($row = mysqli_fetch_assoc($results)){
         extract($row);
         $post_item = array(
-            'category' => $category,
+            'category' => $categories,
             'beds' => $beds,
             'price' => $price,
             'code' => $roomCode
